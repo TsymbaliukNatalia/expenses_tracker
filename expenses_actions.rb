@@ -4,9 +4,18 @@ require_relative 'helpers'
 
 # creating a new expense
 def add_expense
-  puts 'Expense category?'
-  expense_category = STDIN.gets.chomp
+  expense_category = nil
+  loop do
+      puts 'Expense category?'
+      expense_category = STDIN.gets.chomp
+      if expense_category == ''
+          puts "Incorrect input! Please enter a category name."
+      else
+          break
+      end
+  end
 
+  expense_amount = nil
   loop do
     puts 'How much did you spend?'
     expense_amount = STDIN.gets.chomp
@@ -78,7 +87,9 @@ def validate_show_expenses_date_input(input)
     # verification of correct date input
     elsif input_args[0].match(/^(\d{2}\.){0,2}+\d{4}$/) == nil
         puts "Invalid date format. Possible formats: DD.MM.YYYY, MM.YYYY, YYYY"
-    # attempt to parse the date
+    # attempt to parse the date (not for years)
+    elsif input_args[0].size == 4
+        return 1
     else
         begin
             DateTime.parse(input_args[0])
@@ -200,12 +211,16 @@ def show_expenses
             input_args = user_input.split
             if input_args[0].size == 0
                 show_expenses
+                exit_loop = true
             elsif input_args[0].size == 4
                 show_expenses_by_year(input_args[0], input_args[1])
+                exit_loop = true
             elsif input_args[0].size < 9
                 show_expenses_by_month(input_args[0], input_args[1])
+                exit_loop = true
             else
                show_expenses_by_date(input_args[0], input_args[1])
+               exit_loop = true
             end
         end
     end
