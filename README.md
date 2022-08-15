@@ -121,22 +121,22 @@ and return to the instruction.<br />
 
 If the input is correct, you will see a table with the results and return to the previous menu<br />
 An example of a table:<br />
-<ul>
-<li>+--------------------------------+</li>
-<li>|       Expenses for 2022        |</li>
-<li>+----------+------------+--------+</li>
-<li>| Category | Date       | Amount |</li>
-<li>+----------+------------+--------+</li>
-<li>| joy      | 2022-08-14 | 250.0  |</li>
-<li>| food     | 2022-08-14 | 40.0   |</li>
-<li>| dancing  | 2022-06-15 | 12.4   |</li>
-<li>| food     | 2022-06-14 | 15.0   |</li>
-<li>| food     | 2022-08-15 | 5.0    |</li>
-<li>| ff       | 2022-08-15 | 5.0    |</li>
-<li>+----------+------------+--------+</li>
-<li>| Total amount          | 327.4  |</li>
-<li>+-----------------------+--------+</li>
-</ul>
+<pre>
++--------------------------------+
+|       Expenses for 2022        |
++----------+------------+--------+
+| Category | Date       | Amount |
++----------+------------+--------+
+| joy      | 2022-08-14 | 250.0  |
+| food     | 2022-08-14 | 40.0   |
+| dancing  | 2022-06-15 | 12.4   |
+| food     | 2022-06-14 | 15.0   |
+| food     | 2022-08-15 | 5.0    |
+| ff       | 2022-08-15 | 5.0    |
++----------+------------+--------+
+| Total amount          | 327.4  |
++-----------------------+--------+
+</pre>
 
 ## Delete expenses
 
