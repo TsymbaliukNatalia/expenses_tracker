@@ -7,8 +7,16 @@ def add_expense
   puts 'Expense category?'
   expense_category = STDIN.gets.chomp
 
-  puts 'How much did you spend?'
-  expense_amount = STDIN.gets.to_f
+  loop do
+    puts 'How much did you spend?'
+    expense_amount = STDIN.gets.chomp
+    if expense_amount.match(/^\d{1,}(\.\d{1,2})?$/) == nil
+        puts "Incorrect amount input format! The correct format is 10 or 10.50."
+    else
+        expense_amount = expense_amount.to_f
+        break
+    end
+  end
 
   puts 'Enter the date of payment in the format DD.MM.YYYY, for example, 14.08.2022 ' \
             '(empty field - today)'
@@ -192,7 +200,7 @@ def show_expenses
             input_args = user_input.split
             if input_args[0].size == 0
                 show_expenses
-            if input_args[0].size == 4
+            elsif input_args[0].size == 4
                 show_expenses_by_year(input_args[0], input_args[1])
             elsif input_args[0].size < 9
                 show_expenses_by_month(input_args[0], input_args[1])

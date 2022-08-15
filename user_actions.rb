@@ -87,7 +87,6 @@ loop do
   user_input = STDIN.gets.chomp
   if !valid_input.include? user_input
     puts 'Invalid input'
-    puts "\n" + instructions
   # create new user
   elsif user_input == 'n'
     username = nil
