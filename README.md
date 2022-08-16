@@ -10,6 +10,7 @@ io/console (gem install io-console) <br />
 terminal-table (gem install terminal-table) <br />
 mysql2 (gem install mysql2) <br />
 active_record (gem install activerecord) <br />
+rspec (gem install rspec) <br />
 
 ## DB
 

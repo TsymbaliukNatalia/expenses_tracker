@@ -75,55 +75,58 @@ def try_auth
   result
 end
 
-# flag to control the moment of return to the menu of working with the user
-exit_loop = false
+def start_user_actions
+    # flag to control the moment of return to the menu of working with the user
+    exit_loop = false
 
-loop do
-  instructions = "Press 'n' for new user, 'l' to login, or 'x' to exit: -> "
-  print_instructions(instructions)
+    loop do
+      instructions = "Press 'n' for new user, 'l' to login, or 'x' to exit: -> "
+      print_instructions(instructions)
 
-  # choosing an action to work with the user
-  valid_input = %w[n l x]
-  user_input = STDIN.gets.chomp
-  if !valid_input.include? user_input
-    puts 'Invalid input'
-  # create new user
-  elsif user_input == 'n'
-    username = nil
-    password = nil
-    username_validated = false
-    password_validated = false
-    loop do
-        puts 'Please enter a username'
-        username = STDIN.gets.chomp
-        username_validated = validate_username(username)
-        break if username_validated
-    end
-    loop do
-        puts 'Please enter a password'
-        password = STDIN.noecho(&:gets)
-        password.strip!
-        puts 'Please repeat a password'
-        password_repeat = STDIN.noecho(&:gets)
-        password_repeat.strip!
-        if password == password_repeat
-            password_validated = validate_password(password)
-        else
-            puts "Passwords do not match!"
+      # choosing an action to work with the user
+      valid_input = %w[n l x]
+      user_input = STDIN.gets.chomp
+      if !valid_input.include? user_input
+        puts 'Invalid input'
+      # create new user
+      elsif user_input == 'n'
+        username = nil
+        password = nil
+        username_validated = false
+        password_validated = false
+        loop do
+            puts 'Please enter a username'
+            username = STDIN.gets.chomp
+            username_validated = validate_username(username)
+            break if username_validated
         end
-        break if password_validated
-    end
-    create_user(username, password)
-  # authentication (success - proceed to work with costs, failure - exit the program)
-  elsif user_input == 'l'
-     if try_auth == 1
-        exit_loop = true
-     else
+        loop do
+            puts 'Please enter a password'
+            password = STDIN.noecho(&:gets)
+            password.strip!
+            puts 'Please repeat a password'
+            password_repeat = STDIN.noecho(&:gets)
+            password_repeat.strip!
+            if password == password_repeat
+                password_validated = validate_password(password)
+            else
+                puts "Passwords do not match!"
+            end
+            break if password_validated
+        end
+        create_user(username, password)
+      # authentication (success - proceed to work with costs, failure - exit the program)
+      elsif user_input == 'l'
+         if try_auth == 1
+            exit_loop = true
+         else
+            abort
+         end
+      # exit the program
+      elsif user_input == 'x'
         abort
-     end
-  # exit the program
-  elsif user_input == 'x'
-    abort
-  end
-  break if exit_loop
+      end
+      break if exit_loop
+    end
 end
+

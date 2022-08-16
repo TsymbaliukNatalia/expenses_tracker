@@ -87,6 +87,7 @@ def validate_show_expenses_date_input(input)
     # verification of correct date input
     elsif input_args[0].match(/^(\d{2}\.){0,2}+\d{4}$/) == nil
         puts "Invalid date format. Possible formats: DD.MM.YYYY, MM.YYYY, YYYY"
+        return 0
     # attempt to parse the date (not for years)
     elsif input_args[0].size == 4
         return 1
@@ -228,25 +229,27 @@ def show_expenses
   end
 end
 
-exit_loop = false
+def start_expense_actions
+    exit_loop = false
 
-# choosing an action for expenses (add, delete, show)
-loop do
-  instructions = "Press 'n' to add a new expense, 'l' to see a list of expenses, 'd' clear all expenses, or 'x' to exit: -> "
-  print_instructions(instructions)
-  valid_input = %w[n l d x]
-  user_input = STDIN.gets.chomp
-  if !valid_input.include? user_input
-    puts 'Invalid input'
-    puts "\n" + instructions
-  elsif user_input == 'n'
-    add_expense
-  elsif user_input == 'l'
-    show_expenses
-  elsif user_input == 'd'
-    delete_expenses
-  elsif user_input == 'x'
-    abort
-  end
-  break if exit_loop
+    # choosing an action for expenses (add, delete, show)
+    loop do
+      instructions = "Press 'n' to add a new expense, 'l' to see a list of expenses, 'd' clear all expenses, or 'x' to exit: -> "
+      print_instructions(instructions)
+      valid_input = %w[n l d x]
+      user_input = STDIN.gets.chomp
+      if !valid_input.include? user_input
+        puts 'Invalid input'
+        puts "\n" + instructions
+      elsif user_input == 'n'
+        add_expense
+      elsif user_input == 'l'
+        show_expenses
+      elsif user_input == 'd'
+        delete_expenses
+      elsif user_input == 'x'
+        abort
+      end
+      break if exit_loop
+    end
 end
