@@ -15,6 +15,7 @@ rspec (gem install rspec) <br />
 ## DB
 
 Data source - MySQL
+The path to the database file for the project - "/DB/db.sql" <br />
 
 ## DB connection settings
 
